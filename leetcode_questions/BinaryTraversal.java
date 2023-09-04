@@ -1,11 +1,11 @@
-package Trees;
+package leetcode_questions;
 
-class Node{
+class Node1{
     int data;
-    Node left;
-    Node right;
+    Node1 left;
+    Node1 right;
 
-    Node(int data)
+    Node1(int data)
     {
         this.data = data;
         left = right = null;
@@ -14,13 +14,13 @@ class Node{
 }
 public class BinaryTraversal {
 
-    Node root;
+    Node1 root;
     BinaryTraversal()
     {
         root = null;
     }
 
-    public  void preoder(Node root)
+    public  void preoder(Node1 root)
     {
         if (root == null)
         {
@@ -31,7 +31,7 @@ public class BinaryTraversal {
         preoder(root.right);
 
     }
-    public  void inorder(Node root)
+    public  void inorder(Node1 root)
     {
         if (root == null)
         {
@@ -42,7 +42,7 @@ public class BinaryTraversal {
         inorder(root.right);
     }
 
-    public  void postorder(Node root)
+    public  void postorder(Node1 root)
     {
         if (root == null)
         {
@@ -56,13 +56,13 @@ public class BinaryTraversal {
 
     public static void main(String[] args) {
         BinaryTraversal tree = new BinaryTraversal();
-        tree.root = new Node(1);
-        tree.root.left = new Node(2);
-        tree.root.right = new Node(3);
-        tree.root.left.left = new Node(4);
-        tree.root.left.right = new Node(5);
-        tree.root.right.left = new Node(6);
-        tree.root.right.right = new Node(7);
+        tree.root = new Node1(1);
+        tree.root.left = new Node1(2);
+        tree.root.right = new Node1(3);
+        tree.root.left.left = new Node1(4);
+        tree.root.left.right = new Node1(5);
+        tree.root.right.left = new Node1(6);
+        tree.root.right.right = new Node1(7);
 
         System.out.print("Preorder : ");
         tree.preoder(tree.root);
