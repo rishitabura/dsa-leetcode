@@ -1,7 +1,5 @@
 package leetcode_questions;
 
-import linkedlist.linkedlistOpt;
-
 public class mergeSortedLL {
 
     static node head;
