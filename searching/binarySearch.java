@@ -1,6 +1,5 @@
 package searching;
 
-import java.util.Arrays;
 
 public class binarySearch {
     static int search(int[] arr,int k )
@@ -30,7 +29,7 @@ public class binarySearch {
     public static void main(String[] args) {
 
         int [] arr = {-1,0,3,5,9,12};
-        int n = arr.length;
+        // int n = arr.length;
         int target = 2;
 
         int s = search(arr,target);

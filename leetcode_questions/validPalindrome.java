@@ -1,6 +1,5 @@
-// package leetcode_questions;
+package leetcode_questions;
 
-import java.util.Locale;
 
 public class validPalindrome {
     static boolean isPalindrome(String s)

@@ -1,4 +1,4 @@
-
+package leetcode_questions;
 
 public class removeDuplicates {
     static void duplicates(int[] nums)
