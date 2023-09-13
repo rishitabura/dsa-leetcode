@@ -42,6 +42,30 @@ public class removeKnodeFrommEnd {
         p.next = q.next;
         return head;
 
+
+
+//        Optimized solution
+//        ListNode dummy = new ListNode(0);
+//        dummy.next = head;
+//        ListNode first = dummy;
+//        ListNode second = dummy;
+//
+//        // Advance the first pointer n+1 steps ahead
+//        for (int i = 0; i <= n; i++) {
+//            first = first.next;
+//        }
+//
+//        // Move both pointers simultaneously until the first pointer reaches the end
+//        while (first != null) {
+//            first = first.next;
+//            second = second.next;
+//        }
+//
+//        // Remove the nth node from the end by updating the next reference of the second pointer
+//        second.next = second.next.next;
+//
+//        return dummy.next;
+
     }
 
     public static void printList(node head) {
