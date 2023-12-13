@@ -47,7 +47,7 @@ void insertBet(node* &head, int val, int n)
     int count  = 1;
     node* p = head;
     node* newNode = new node(val);
-    while (count != n)
+    while (count != n-1)
     {
         p = p->next;
         count++;
@@ -172,8 +172,8 @@ int main()
     display(head);
 
 
-    // insertBet(head, 6, 4);
-    // display(head);
+    insertBet(head, 6, 4);
+    display(head);
 
 
     // deleteFirst(head);
@@ -181,8 +181,8 @@ int main()
     // deleteLast(head);
     // display(head);
 
-    deleteBet(head, 2);
-    display(head);
+    // deleteBet(head, 2);
+    // display(head);
 
     // cout << length(head);
     // cout << search(head, 5);
