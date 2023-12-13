@@ -43,3 +43,33 @@ ListNode *detectCycle(ListNode *head)
     }
     return NULL;
 }
+
+// length of cycle
+int FindLength(Node *slow, Node *fast)
+{
+    int count = 1;
+    fast = fast->next;
+    while (slow != fast)
+    {
+        count++;
+        fast = fast->next;
+    }
+    return count;
+}
+int lengthOfLoop(Node *head)
+{
+    Node *slow = head;
+    Node *fast = head;
+
+    while (fast != NULL && fast->next != NULL)
+    {
+        fast = fast->next->next;
+        slow = slow->next;
+
+        if (fast == slow)
+        {
+            return FindLength(slow, fast);
+        }
+    }
+    return 0;
+}
