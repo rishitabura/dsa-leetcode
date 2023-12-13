@@ -122,6 +122,28 @@ void display(node* head)
     
 }
 
+node* reverse(node* head)
+{
+    node* prevptr = nullptr;
+    node* currptr = head;
+
+    while (currptr!= nullptr)
+    {
+
+        prevptr = currptr->prev;
+        currptr->prev = currptr->next;
+        currptr->next = prevptr;
+
+        currptr = currptr->prev;
+    }
+    if (prevptr!= nullptr)
+    {
+        head = prevptr->prev;
+    }
+    
+    return head;
+    
+}
 
 int main()
 {
@@ -145,6 +167,10 @@ int main()
     // display(head);
     deleteBet(head, 3);
     display(head);
+
+    node* newHead = reverse(head);
+    display(newHead);
+
     
     return 0;
 }
