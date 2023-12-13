@@ -42,6 +42,48 @@ void insertFirst(node* &head, int val)
     head = newNode;
 }
 
+void insertBet(node* &head, int val, int n)
+{
+    int count  = 1;
+    node* p = head;
+    node* newNode = new node(val);
+    while (count != n)
+    {
+        p = p->next;
+        count++;
+    }
+    newNode->next = p->next;
+    p->next = newNode;
+    
+    
+}
+
+void deleteFirst(node* &head)
+{
+    node* temp = head;
+    head = head->next;
+    delete temp;
+}
+
+void deleteBet(node* &head, int n)
+{
+    node* p = head;
+    node* q = head->next;
+
+    int count =1;
+    
+    while (count != n-1)
+    {
+        p = p->next;
+        q = q->next;
+        count++;
+    }
+
+    p->next = q->next;
+    delete q;
+    
+}
+
 void deleteLast(node* &head)
 {
     node* p = head;
@@ -122,21 +164,31 @@ int main()
 {
     node* head = NULL;
 
-    insertEnd(head, 1);
     insertEnd(head, 2);
     insertEnd(head, 3);
-    insertFirst(head, 4);
+    insertEnd(head, 4);
+    insertFirst(head, 1);
 
     display(head);
 
+
+    // insertBet(head, 6, 4);
+    // display(head);
+
+
+    // deleteFirst(head);
+    // display(head);
     // deleteLast(head);
     // display(head);
+
+    deleteBet(head, 2);
+    display(head);
 
     // cout << length(head);
     // cout << search(head, 5);
 
-    node* newHead = reverse(head);
-    display(newHead);
+    // node* newHead = reverse(head);
+    // display(newHead);
     
     return 0;
 }
