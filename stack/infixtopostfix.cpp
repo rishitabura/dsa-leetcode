@@ -28,7 +28,7 @@ string infixTopostfix(string s)
 
     for (int i = 0; i < s.length(); i++)
     {
-        if (s[i] >= 'a' && s[i] <= 'z' || s[i]>= 'A' && s[i]<= 'Z')
+        if (s[i] >= 'a' && s[i] <= 'z' || s[i]>= 'A' && s[i]<= 'Z' || s[i] >= '0' && s[i] <=9)
         {
             res+=s[i];
         }
@@ -71,7 +71,7 @@ string infixTopostfix(string s)
 }
 int main()
 {
-    string str =  "A+B*C+D";
+    string str =  "A*B+C/D";
     cout << infixTopostfix(str);
     return 0;
 }
