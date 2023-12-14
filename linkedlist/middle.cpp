@@ -1,10 +1,11 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-class node{
-    public:
+class node
+{
+public:
     int data;
-    node* next;
+    node *next;
 
     node(int val)
     {
@@ -13,28 +14,26 @@ class node{
     }
 };
 
-void insertEnd(node* &head, int val)
+void insertEnd(node *&head, int val)
 {
-    node* newNode = new node(val);
+    node *newNode = new node(val);
 
     if (head == NULL)
     {
         head = newNode;
         return;
     }
-    
 
-    node* temp = head;
+    node *temp = head;
 
-    while (temp->next!= NULL)
+    while (temp->next != NULL)
     {
         temp = temp->next;
     }
     temp->next = newNode;
-    
 }
 
-node* middleNode(node *head)
+node *middleNode(node *head)
 {
     node *temp = head;
     int count = 0;
@@ -43,7 +42,7 @@ node* middleNode(node *head)
         count++;
         temp = temp->next;
     }
-    cout << "Count - "<< count << endl;
+    cout << "Count - " << count << endl;
     int mid = (count) / 2;
     cout << "Mid - " << mid << endl;
     node *p = head;
@@ -63,38 +62,71 @@ node* middleNode(node *head)
             p = p->next;
         }
         return p;
-        
     }
 
     return NULL;
 }
-void display(node* head)
+
+node *middle(node *head)
 {
-    node* temp = head;
-    while (temp!= NULL)
+    node *slow = head;
+    node *fast = head;
+
+    while (fast != nullptr && fast->next != nullptr)
+    {
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    return slow;
+}
+
+node *deleteMiddle(node *head)
+{
+    node *prev;
+    node *slow = head;
+    node *fast = head;
+
+    if (head == NULL || head->next == NULL)
+    {
+        return NULL;
+    }
+
+    while (fast != nullptr && fast->next != nullptr)
+    {
+        prev = slow;
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    node *temp = slow;
+    prev->next = slow->next;
+    delete temp;
+
+    return head;
+}
+void display(node *head)
+{
+    node *temp = head;
+    while (temp != NULL)
     {
         cout << temp->data << " ";
         temp = temp->next;
     }
     cout << endl;
-    
 }
 
 int main()
 {
-    node* head = NULL;
+    node *head = NULL;
 
     insertEnd(head, 1);
     insertEnd(head, 2);
     insertEnd(head, 3);
-    insertEnd(head, 4);
-    insertEnd(head, 5);
-    // insertEnd(head, 6);
+    insertEnd(head, 3);
+    insertEnd(head, 2);
+    // insertEnd(head, 1);
 
-
-    node* p = middleNode(head);
+    node *p = deleteMiddle(head);
     display(p);
 
-    
     return 0;
 }
