@@ -7,7 +7,6 @@ using namespace std;
 2. max nodes in a tree with height H = 2^H-1
 3. for N nodes, min height or levels = log2(N+1)
 */
-static int count = 0;
 class node
 {
 public:
@@ -77,7 +76,7 @@ int height(node *root)
     }
 }
 
-void leafNodes(node *root)
+void leafNodes(node *root, int &count)
 {
     if (root == nullptr)
     {
@@ -86,14 +85,15 @@ void leafNodes(node *root)
     if (root->left == nullptr && root->right == nullptr)
     {
         cout << root->data << " ";
+        count++;
     }
     if (root->left != nullptr)
     {
-        leafNodes(root->left);
+        leafNodes(root->left, count);
     }
     if (root->right != nullptr)
     {
-        leafNodes(root->right);
+        leafNodes(root->right, count);
     }
 }
 int countNode(node *root)
@@ -173,7 +173,9 @@ int main()
     postorder(root);
     cout << "\nHeight : " << height(root);
     cout << "\nLeaf nodes : ";
-    leafNodes(root);
+    int count=0;
+    leafNodes(root,count);
+    cout << "\nNo of leaf nodes : " << count;
     // int count = 0;
     cout << "\nCount : " << countNode(root);
     cout << "\nLevel wise display : ";
