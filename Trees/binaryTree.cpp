@@ -156,6 +156,39 @@ void mirrorImage(node* root)
     
 }
 
+bool search(node* root, int val)
+{
+    if (root==nullptr)
+    {
+        return false;
+    }
+    if (root->data == val)
+    {
+        return true;
+    }
+
+    return search(root->left,val) || search(root->right,val);    
+
+}
+
+bool validate(node* root, int minVal, int maxVal)
+{
+    if (root==nullptr)
+    {
+        return true;
+    }
+    if (root->data >= maxVal || root->data<=minVal)
+    {
+        return false;
+    }
+    return validate(root->left,minVal,root->data) && validate(root->right,root->data,maxVal);    
+}
+bool isBst(node* root)
+{
+    return validate(root,INT_MIN,INT_MAX);
+    
+}
+
 int main()
 {
     node *root = new node(1);
@@ -165,24 +198,27 @@ int main()
     root->left->right = new node(6);
     root->left->right->left = new node(7);
     root->right->left = new node(8);
-    cout << "Preorder : ";
-    preorder(root);
-    cout << "\nInorder : ";
-    inorder(root);
-    cout << "\nPostorder : ";
-    postorder(root);
-    cout << "\nHeight : " << height(root);
-    cout << "\nLeaf nodes : ";
-    int count=0;
-    leafNodes(root,count);
-    cout << "\nNo of leaf nodes : " << count;
-    // int count = 0;
-    cout << "\nCount : " << countNode(root);
-    cout << "\nLevel wise display : ";
-    levelwiseDisplay(root);
-    cout << "\nMirror image preeoder : ";
-    mirrorImage(root);
-    preorder(root);
+    cout << isBst(root);
+    // cout << search(root,9);
+    // cout << "Preorder : ";
+    // preorder(root);
+    // cout << "\nInorder : ";
+    // inorder(root);
+    // cout << "\nPostorder : ";
+    // postorder(root);
+    // cout << "\nHeight : " << height(root);
+    // cout << "\nLeaf nodes : ";
+    // int count=0;
+    // leafNodes(root,count);
+    // cout << "\nNo of leaf nodes : " << count;
+    // // int count = 0;
+    // cout << "\nCount : " << countNode(root);
+    // cout << "\nLevel wise display : ";
+    // levelwiseDisplay(root);
+    // cout << "\nMirror image preeoder : ";
+    // mirrorImage(root);
+    // preorder(root);
+    
 
 
     return 0;
