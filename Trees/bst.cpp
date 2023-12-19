@@ -42,25 +42,73 @@ void inorder(node *root)
     inorder(root->right);
 }
 
-
-bool validate(node* root, int minVal, int maxVal)
+bool validate(node *root, int minVal, int maxVal)
 {
-    if (root==nullptr)
+    if (root == nullptr)
     {
         return true;
     }
-    if (root->data >= maxVal || root->data<=minVal)
+    if (root->data >= maxVal || root->data <= minVal)
     {
         return false;
     }
-    return validate(root->left,minVal,root->data) && validate(root->right,root->data,maxVal);    
+    return validate(root->left, minVal, root->data) && validate(root->right, root->data, maxVal);
 }
-bool isBst(node* root)
+bool isBst(node *root)
 {
     int min = INT_MIN;
     int max = INT_MAX;
-    return validate(root,min,max);
-    
+    return validate(root, min, max);
+}
+
+node *searchBST(node *root, int val)
+{
+    if (root == NULL)
+    {
+        return NULL;
+    }
+    if (root->val == val)
+    {
+        return root;
+    }
+    else if (root->val > val)
+    {
+        return searchBST(root->left, val);
+    }
+    else
+    {
+        return searchBST(root->right, val);
+    }
+}
+
+int minVal(node *root)
+{
+    int mini = 0;
+    if (root == NULL)
+    {
+        return -1;
+    }
+    while (root)
+    {
+        mini = root->data;
+        root = root->left;
+    }
+    return mini;
+}
+
+int maxVal(node *root)
+{
+    int maxi = 0;
+    if (root == NULL)
+    {
+        return -1;
+    }
+    while (root)
+    {
+        maxi = root->data;
+        root = root->right;
+    }
+    return maxi;
 }
 
 int main()
@@ -73,7 +121,7 @@ int main()
     insert(root, 6);
     // cout << "Preorder : ";
     // inorder(root);
-    cout << isBst(root);
+    cout << maxVal(root);
 
     return 0;
 }
