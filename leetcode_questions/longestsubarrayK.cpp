@@ -3,62 +3,49 @@
 using namespace std;
 
 int longestSubarrayWithSumK(vector<int> a, long long k) {
-    long long sum = 0;
-    int len = -1;
-    int maxlen = -1;
-    int start , ansstart,ansend;
-    for (int i = 0; i < a.size(); i++)
+     int n = a.size();
+    int left = 0;
+    int right = 0;
+    int sum = a[0];
+    int maxlen = 0;
+    int start, end;
+    while(right<n)
     {
-        if(sum == 0)
+
+        while(sum>k && left<=right)
         {
-            start = i;
+            sum-=a[left];
+            left++;
+
         }
-        if(sum==k)
+        if(sum == k)
         {
-             if (len > maxlen) {
-                maxlen = len;
-                start = i - len;
-                end = i - 1;
-            }
-            sum = 0;
-            len = 0;
+            start = left;
+            end = right;
+            maxlen = max(maxlen,right-left+1);
         }
-        
-        if (sum < k)
+        right++;
+        if(right<n)
         {
-            sum += a[i];
-            len++;
-            
+            sum += a[right];
         }
-        if(sum>k)
-        {
-            sum = 0;
-            len = 0;
-            
-        }   
-         if(a[i]==k)
-        {
-            maxlen=1;
-            ansstart = i;
-            ansend = i;
-        }    
     }
-    
-     for (int i = ansstart; i <= ansend; i++)
+
+    for (int i = start; i <= end; i++)
     {
-        cout << a[i] << " ";
+        cout << a[start] << " ";
     }
     cout << endl;
-    
     return maxlen;
+
 }
 
 int main()
 {
 
-    vector<int> a = {1,2,3,1,1,1,1};
-    int n = 7;
-    long long k = 3;
+    vector<int> a = {1, 1, 0, 1, 1 };
+    int n = 5;
+    long long k = 2;
     cout<< longestSubarrayWithSumK(a, k);
     return 0;
 }
