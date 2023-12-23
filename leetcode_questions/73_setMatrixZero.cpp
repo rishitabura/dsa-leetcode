@@ -3,7 +3,8 @@
 using namespace std;
 
 /*brute force
-time- O(n^2)*/
+time- O(mn)
+space - O(m)+O(n)*/
 void setZeroes(vector<vector<int>> &matrix)
 {
 
