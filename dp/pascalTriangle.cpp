@@ -4,8 +4,12 @@
 
 Q2. Print nth row element of pascan triangle
 1. Brute force - use the formula method - O(n*r)
-2. */
+2. Optimal - O(n)
+
+Q3. Print the triangle
+*/
 #include<bits/stdc++.h>
+#include<vector>
 using namespace std;
 
 
@@ -29,7 +33,7 @@ void BruteprintNthRow(int n)    //O(n*r )
     
 }
 
-void OptprintNthRow(int n)
+void OptprintNthRow(int n)  // O(n)
 {
     int ans = 1;
     cout << ans << " ";
@@ -42,14 +46,42 @@ void OptprintNthRow(int n)
     
 }
 
+vector<vector<int>>pascalTriangle(int n)
+{
+    vector<vector<int>> ans;
+    for (int r = 1; r <= n; r++)
+    {
+        vector<int> temp;
+        for (int c = 1; c <= r; c++)
+        {
+            temp.push_back(binomialCoefficient(r-1,c-1));
+        }
+        ans.push_back(temp);
+    }
+    return ans;
+       
+}
+
+
+
 int main()
 {
     int n = 4;
     int r = 2;
     // cout << binomialCoefficient(n-1,r-1);
-    BruteprintNthRow(5);
-    cout << endl;
-    OptprintNthRow(5);
+    // BruteprintNthRow(5);
+    // OptprintNthRow(5);
+    vector<vector<int>> ans = pascalTriangle(n);
+    for (auto it: ans)
+    {
+        for (auto el: it)
+        {
+            cout << el << " ";
+        }
+        cout << endl;
+        
+    }
+    
     
     return 0;
 }
