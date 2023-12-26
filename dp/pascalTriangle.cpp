@@ -7,6 +7,8 @@ Q2. Print nth row element of pascan triangle
 2. Optimal - O(n)
 
 Q3. Print the triangle
+1. Brute force - O(n^3)
+2. Optimal - O(n^2)
 */
 #include <bits/stdc++.h>
 #include <vector>
