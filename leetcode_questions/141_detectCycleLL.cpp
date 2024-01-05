@@ -3,7 +3,7 @@
  * struct ListNode {
  *     int val;
  *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
+ *     ListNode(int x) : val(x), next(NU) {}
  * };
  */
 class Solution {
@@ -12,7 +12,7 @@ public:
         ListNode* slow = head;
         ListNode* fast = head;
 
-        while(fast!=NULL && fast->next!=NULL)
+        while(fast!=NU && fast->next!=NU)
         {
             fast = fast->next->next;
             slow = slow->next;
