@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#include<queue>
+#include <queue>
 using namespace std;
 
 /*
@@ -33,6 +33,22 @@ void preorder(node *root)
     preorder(root->right);
 }
 
+void preorderIterative(node *root)
+{
+    stack<node *> st;
+    st.push(root);
+    while (!st.empty())
+    {
+        node *temp = st.top();
+        cout << temp->data << " ";
+        st.pop();
+        if (temp->right)
+            st.push(temp->right);
+        if (temp->left)
+            st.push(temp->left);
+    }
+}
+
 void inorder(node *root)
 {
     if (root == nullptr)
@@ -44,6 +60,31 @@ void inorder(node *root)
     inorder(root->right);
 }
 
+void inorderIterative(node *root)
+{
+    stack<node *> st;
+    // st.push(root);
+    node *temp = root;
+    while (true)
+    {
+        if (temp)
+        {
+            st.push(temp);
+            temp = temp->left;
+        }
+        else
+        {
+            if (st.empty())
+                break;
+
+            temp = st.top();
+            st.pop();
+            cout << temp->data << " ";
+            temp = temp->right;
+        }
+    }
+}
+
 void postorder(node *root)
 {
     if (root == nullptr)
@@ -53,6 +94,35 @@ void postorder(node *root)
     postorder(root->left);
     postorder(root->right);
     cout << root->data << " ";
+}
+
+void postorderIterative(node *root)
+{
+    stack<node *> st1;
+    stack<node *> st2;
+
+    st1.push(root);
+    while (!st1.empty())
+    {
+        root = st1.top();
+        st1.pop();
+        st2.push(root);
+
+        if (root->left)
+        {
+            st1.push(root->left);
+        }
+        if (root->right)
+        {
+            st1.push(root->right);
+        }
+    }
+    while (!st2.empty())
+    {
+        node *temp = st2.top();
+        cout << temp->data << " ";
+        st2.pop();
+    }
 }
 
 int height(node *root)
@@ -74,6 +144,32 @@ int height(node *root)
             return r + 1;
         }
     }
+}
+
+bool isBalanced(node *root)
+{
+    if (root == nullptr)
+    {
+        return true;
+    }
+
+    if (!isBalanced(root->left) || !isBalanced(root->right))
+    {
+        return false;
+    }
+
+    int l = height(root->left);
+    int r = height(root->right);
+
+    if (abs(l - r <= 1))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
 }
 
 void leafNodes(node *root, int &count)
@@ -111,54 +207,50 @@ int countNode(node *root)
     return l + r + 1;
 }
 
-void levelwiseDisplay(node* root)
+void levelwiseDisplay(node *root)
 {
-    if (root==nullptr)
+    if (root == nullptr)
     {
         return;
     }
     else
     {
-        queue<node*> q;
+        queue<node *> q;
         q.push(root);
         while (!q.empty())
         {
-            node* temp = q.front();
+            node *temp = q.front();
             cout << temp->data << " ";
 
-            if (temp->left!=nullptr)
+            if (temp->left != nullptr)
             {
                 q.push(temp->left);
             }
-            if (temp->right!=nullptr)
+            if (temp->right != nullptr)
             {
                 q.push(temp->right);
             }
-            q.pop();       
-                 
+            q.pop();
         }
     }
-    
 }
 
-void mirrorImage(node* root)
+void mirrorImage(node *root)
 {
     node *temp;
-    if (root!=nullptr)
+    if (root != nullptr)
     {
         mirrorImage(root->left);
         mirrorImage(root->right);
         temp = root->left;
         root->left = root->right;
         root->right = temp;
-
     }
-    
 }
 
-bool search(node* root, int val)
+bool search(node *root, int val)
 {
-    if (root==nullptr)
+    if (root == nullptr)
     {
         return false;
     }
@@ -167,26 +259,24 @@ bool search(node* root, int val)
         return true;
     }
 
-    return search(root->left,val) || search(root->right,val);    
-
+    return search(root->left, val) || search(root->right, val);
 }
 
-bool validate(node* root, int minVal, int maxVal)
+bool validate(node *root, int minVal, int maxVal)
 {
-    if (root==nullptr)
+    if (root == nullptr)
     {
         return true;
     }
-    if (root->data >= maxVal || root->data<=minVal)
+    if (root->data >= maxVal || root->data <= minVal)
     {
         return false;
     }
-    return validate(root->left,minVal,root->data) && validate(root->right,root->data,maxVal);    
+    return validate(root->left, minVal, root->data) && validate(root->right, root->data, maxVal);
 }
-bool isBst(node* root)
+bool isBst(node *root)
 {
-    return validate(root,INT_MIN,INT_MAX);
-    
+    return validate(root, INT_MIN, INT_MAX);
 }
 
 int main()
@@ -198,14 +288,20 @@ int main()
     root->left->right = new node(6);
     root->left->right->left = new node(7);
     root->right->left = new node(8);
-    cout << isBst(root);
+    // root->left->right->left->left = new node(10);
+    // cout << isBst(root);
     // cout << search(root,9);
     // cout << "Preorder : ";
+    // preorderIterative(root);
+    // cout << endl;
     // preorder(root);
     // cout << "\nInorder : ";
     // inorder(root);
+    // inorderIterative(root);
     // cout << "\nPostorder : ";
     // postorder(root);
+    // postorderIterative(root);
+    // cout << isBalanced(root);
     // cout << "\nHeight : " << height(root);
     // cout << "\nLeaf nodes : ";
     // int count=0;
@@ -218,8 +314,6 @@ int main()
     // cout << "\nMirror image preeoder : ";
     // mirrorImage(root);
     // preorder(root);
-    
-
 
     return 0;
 }
