@@ -16,49 +16,43 @@ public:
     }
 };
 
-void getPath(node *root, int a, vector<int> &temp, vector<vector<int>> &res)
+void getPath(node *root, vector<vector<int>> &res, vector<int> temp)
 {
     if (!root)
     {
         return;
     }
 
-    temp.push_back(root->data);
-
+    if(root->left == nullptr && root->right == nullptr)
+    {
+        temp.push_back(root->data);
+        res.push_back(temp);
+        return;
+    }
     if (root->left)
     {
-        getPath(root->left);
+        getPath(root->left,res, temp);
     }
 
     if (root->right)
     {
-        getPath(root->right);
+        getPath(root->right, res, temp);
     }
 
-    if (root->left == nullptr || root->right == nullptr)
-    {
-        for (int i = 0; i < temp.size(); i++)
-        {
-            res[0][i] = temp[i];
-        }
-        
-    }
-    
-
-    ans.pop_back();
-    return false;
+    temp.pop_back();
 }
 
-vector<int> rootToLeaf(node *root)
+vector<vector<int>> rootToLeaf(node *root)
 {
-    vector<int> ans;
+    vector<vector<int>> res;
+    vector<int> temp;
     if (!root)
     {
-        return ans;
+        return res;
     }
 
-    getPath(root, ans);
-    return ans;
+    getPath(root, res, temp);
+    return res;
 }
 
 int main()
@@ -71,10 +65,16 @@ int main()
     root->left->right->left = new node(7);
     root->right->left = new node(8);
 
-    vector<int> ans = rootToNode(root, 8);
-    for (int i = 0; i < ans.size(); i++)
+    vector<vector<int>> ans = rootToLeaf(root);
+    for (auto it: ans)
     {
-        cout << ans[i] << " ";
+        cout << "[";
+        for (auto s: it)
+        {
+            cout << s << " ";
+        }
+        cout << "]";
+        
     }
 
     return 0;

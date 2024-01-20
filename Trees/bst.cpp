@@ -67,11 +67,11 @@ node *searchBST(node *root, int val)
     {
         return NULL;
     }
-    if (root->val == val)
+    if (root->data == val)
     {
         return root;
     }
-    else if (root->val > val)
+    else if (root->data > val)
     {
         return searchBST(root->left, val);
     }
@@ -119,8 +119,8 @@ int main()
     insert(root, 7);
     insert(root, 1);
     insert(root, 6);
-    // cout << "Preorder : ";
-    // inorder(root);
+    cout << "Preorder : ";
+    inorder(root);
     cout << maxVal(root);
 
     return 0;
