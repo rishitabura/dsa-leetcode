@@ -39,7 +39,7 @@ int main()
 {
     vector<int> nums = {1, 2, 1};
     vector<int> ans;
-    print1SubSeqwithSumK(0, nums, ans, 0, 2);
+    print1SubSeqwithSumK(0, nums, ans, 0,2 );
 
     return 0;
 }
