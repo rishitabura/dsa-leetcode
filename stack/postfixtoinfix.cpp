@@ -1,14 +1,15 @@
 #include<bits/stdc++.h>
 #include<stack>
+#include<vector>
 using namespace std;
 
-string postdfixToinfix(string s)
+string postdfixToinfix(vector<string> s)
 {
     stack<string> st;
     string res;
-    for (int i = 0; i < s.length(); i++)
+    for (int i = 0; i < s.size(); i++)
     {
-        if (s[i]=='+' || s[i]=='-' || s[i]=='*' || s[i]== '/' || s[i]=='%' || s[i]=='^')
+        if (s[i]== "+"|| s[i]== "-" || s[i]== "*" || s[i]== "/" || s[i]== "%" || s[i]=="^")
         {
             string op1 = st.top();
             st.pop();
@@ -19,7 +20,7 @@ string postdfixToinfix(string s)
         }
         else
         {
-            st.push(string(1,s[i]));
+            st.push(s[i]);
         }
     }
     // string ans = "";
@@ -33,7 +34,9 @@ string postdfixToinfix(string s)
 
 int main()
 {
-    string str = "AB*CD/+";
+    // string str = "AB*CD/+";
+    vector<string>str = {"4","13","5","/","+"};
+
     cout << postdfixToinfix(str);
     return 0;
 }

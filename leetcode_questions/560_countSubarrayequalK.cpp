@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <vector>
+#include<map>
 using namespace std;
 
 /*brute force
@@ -45,6 +46,33 @@ int subarraySum(vector<int> &nums, int k)
                 count++;
             }
         }
+    }
+    return count;
+}
+
+int countSubarrayWithSumK(vector<int> &nums, int k)
+{
+    int n = nums.size();
+    int count = 0;
+    map<int, int> preMap;
+    preMap[0] = 1;
+
+    int sum = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        sum += nums[i];
+        
+        int rem = sum - k;
+
+        if (preMap.find(rem) != preMap.end())
+        {
+            count += preMap[rem];
+        }
+        
+
+        preMap[sum] += 1;
+        
     }
     return count;
 }
