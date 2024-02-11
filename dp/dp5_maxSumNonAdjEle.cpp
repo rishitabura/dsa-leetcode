@@ -44,5 +44,5 @@ int maximumNonAdjacentSum(vector<int> &nums)
         dp[i] = max(pick, notpick);
     }
     return dp[n - 1];
-    ;
+    
 }
