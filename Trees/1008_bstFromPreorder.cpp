@@ -1,6 +1,7 @@
 class Solution {
 public:
     TreeNode* construct(vector<int>& preorder, int &i, int bound) {
+
         if (i == preorder.size() || preorder[i] > bound) {
             return NULL;
         }
@@ -9,6 +10,7 @@ public:
         root->right = construct(preorder, i, bound);
 
         return root;
+        
     }
     TreeNode* bstFromPreorder(vector<int>& preorder) {
         int i = 0;
