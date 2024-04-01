@@ -1,31 +1,40 @@
 class Solution {
 private:
-    void dfs(int row, int col, vector<vector<int>>& image, vector<vector<int>>& ans, int color, int iniColor, int dx[], int dy[]){
+    void dfs(int row, int col,vector<vector<int>>& visited, vector<vector<char>>& grid) {
 
-        ans[row][col] = color;
-        int n = image.size();
-        int m = image[0].size();
-        for(int i = 0; i<4; i++)
-        {
-            int nrow = row + dx[i];
-            int ncol = col + dy[i];
+        int n = grid.size();
+        int m = grid[0].size();
+        visited[row][col] = 1;
+        int dx[] = {1, -1, 0, 0};
+        int dy[] = {0, 0, -1, 1};
 
-            if(nrow >= 0 && nrow<n && ncol>=0 && ncol<m && 
-            image[nrow][ncol] == iniColor && ans[nrow][ncol] != color){
-                dfs(nrow, ncol, image, ans, color, iniColor, dx, dy);
+        for (int k = 0; k < 4; k++) {
+            int nr = row + dx[k];
+            int nc = col + dy[k];
+
+            if (nr >= 0 && nr < n && nc >= 0 && nc < m &&
+                grid[nr][nc] == '1' && visited[nr][nc] == 0) {
+                dfs(nr, nc, visited, grid);
             }
         }
     }
+
 public:
-    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+    int numIslands(vector<vector<char>>& grid) {
 
-        int iniColor = image[sr][sc];
-        vector<vector<int>>ans = image;
-        int dx[] = {-1,0,1,0};
-        int dy[] = {0,1,0,-1};
-        dfs(sr, sc, image,ans, color, iniColor, dx, dy);
+        int n = grid.size();
+        int m = grid[0].size();
+        vector<vector<int>> visited(n, vector<int>(m, 0));
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (grid[i][j] == '1' && !visited[i][j]) {
+                    count++;
+                    dfs(i, j, visited, grid);
+                }
+            }
+        }
 
-        return ans;
-        
+        return count;
     }
 };
