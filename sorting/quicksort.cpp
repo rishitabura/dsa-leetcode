@@ -13,23 +13,45 @@ using namespace std;
 int c = 0;
 int parition(int arr[], int l, int h, int n)
 {
+    // int i = l;
+    // int j = h;
+    int p = arr[l];
     int i = l;
     int j = h;
-    int p = arr[l];
 
-    while (i<j)
+    // while (i<j)
+    // {
+    //     do
+    //     {
+    //         i++;
+    //     } while (arr[i] <= p);
+    //     do
+    //     {
+    //         j--;
+    //     } while (arr[j] > p);
+    //     if (i<j)
+    //     {
+    //         cout << "\nswap values " << arr[i] << " and " << arr[j] << endl;
+    //         int temp = arr[i];
+    //         arr[i] = arr[j];
+    //         arr[j] = temp;
+            
+    //         c++;
+    //     }
+    // }
+    while (i<=j)
     {
-        do
+        while (i<=j && arr[i] <= p)
         {
             i++;
-        } while (arr[i] <= p);
-        do
+        }
+        while (arr[j] > p)
         {
             j--;
-        } while (arr[j] > p);
+        }
         if (i<j)
         {
-            cout << "\nswap values " << arr[i] << " and " << arr[j] << endl;
+            // cout << "\nswap values " << arr[i] << " and " << arr[j] << endl;
             int temp = arr[i];
             arr[i] = arr[j];
             arr[j] = temp;
@@ -38,17 +60,17 @@ int parition(int arr[], int l, int h, int n)
         }
     }
 
-    cout << "\nswap values " << arr[l] << " and " << arr[j] << endl;
+    // cout << "\nswap values " << arr[l] << " and " << arr[j] << endl;
     int temp = arr[l];
     arr[l] = arr[j];
     arr[j] = temp;
     c++;
-    cout << "\nAfter partition : ";
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
+    // cout << "\nAfter partition : ";
+    // for (int i = 0; i < n; i++)
+    // {
+    //     cout << arr[i] << " ";
+    // }
+    // cout << endl;
     
     
     return j;
@@ -77,7 +99,7 @@ int main()
     cout << endl;
 
     // int c = 0;
-    quickSort(arr,0,n, n);
+    quickSort(arr,0,n-1, n);
     cout << "\nSorted array : " ;
     for (int i = 0; i < n; i++)
     {

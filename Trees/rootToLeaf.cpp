@@ -40,7 +40,7 @@ void getPath(node *root, vector<vector<int>> &res, vector<int> temp)
         getPath(root->right, res, temp);
     }
 
-    // temp.pop_back();
+    temp.pop_back();
 }
 
 vector<vector<int>> rootToLeaf(node *root)
