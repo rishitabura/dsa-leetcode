@@ -135,14 +135,15 @@ int height(node *root)
     {
         int l = height(root->left);
         int r = height(root->right);
-        if (l > r)
-        {
-            return l + 1;
-        }
-        else
-        {
-            return r + 1;
-        }
+        // if (l > r)
+        // {
+        //     return l + 1;
+        // }
+        // else
+        // {
+        //     return r + 1;
+        // }
+        return 1 + max(l, r);
     }
 }
 
@@ -161,7 +162,7 @@ bool isBalanced(node *root)
     int l = height(root->left);
     int r = height(root->right);
 
-    if (abs(l - r <= 1))
+    if (abs(l - r )<= 1)
     {
         return true;
     }
@@ -302,7 +303,7 @@ int main()
     // postorder(root);
     // postorderIterative(root);
     // cout << isBalanced(root);
-    // cout << "\nHeight : " << height(root);
+    cout << "\nHeight : " << height(root);
     // cout << "\nLeaf nodes : ";
     // int count=0;
     // leafNodes(root,count);

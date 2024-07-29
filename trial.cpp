@@ -1,23 +1,31 @@
 #include <iostream>
-#include <string>
-
+#include <vector>
+#include <unordered_map>
 using namespace std;
 
-int main() {
-    string str;
-    cout << "Enter a string: ";
-    getline(cin, str);
-
-    int n = str.length();
-
-    // Reverse the string
-    for (int i = 0; i < n / 2; i++) {
-        char temp = str[i];
-        str[i] = str[n - i - 1];
-        str[n - i - 1] = temp;
+int solve(vector<int> &nums, int ind, vector<int> &dp)
+{
+    if (ind < 0)
+        return 0;
+    if (dp[ind] != -1)
+    {
+        return dp[ind];
     }
 
-    cout << "Reversed string: " << str << endl;
+    int take = nums[ind] + solve(nums, ind - 2, dp);
 
+    int notTake = solve(nums, ind - 1, dp);
+
+    dp[ind] = max(take, notTake);
+
+    return dp[ind];
+}
+
+int main()
+{
+    vector<int> nums = {1, 2, 3, 1};
+    vector<int> dp(nums.size(), -1);
+    int ans = solve(nums, nums.size()-1, dp);
+    cout << "Answer:" << ans << endl;
     return 0;
 }

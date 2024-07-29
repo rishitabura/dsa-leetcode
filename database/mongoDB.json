@@ -1,0 +1,26 @@
+db.movies.insertOne(
+{
+    _id : 100,
+    name : "Avatar",
+    year : 2023,
+    genre : ['Action', 'Sc-fi'
+    ],
+    rating : 7.7
+})
+
+db.movies.insertMany([
+    {
+        _id : 101,
+        name : "Titanic",
+        year : 2021,
+        genre : ['Action', 'Drama'],
+        rating : 8.5
+    },
+    {
+        _id : 102,
+        name : "Iron man",
+        year : 2019,
+        genre : ['Action', 'Drama', 'Suspense'],
+        rating : 9.4
+    }
+])

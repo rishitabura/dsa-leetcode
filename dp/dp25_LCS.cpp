@@ -1,5 +1,5 @@
 /*recursion
-tc - O(2^n 2^m)*/
+tc - O(2^m+n)*/
 
 int solve(int i, int j, string &s1, string &s2)
 {
